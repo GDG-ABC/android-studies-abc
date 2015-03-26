@@ -3,22 +3,22 @@
 
 Para gerar a keystore utilize a keytool como abaixo:
 
-´´´ 
+
 $ keytool -genkey -v -keystore <my-release-key.keystore>
 -alias <alias_name> -keyalg RSA -keysize 2048 -validity 10000
-´´´
+```
 
 Para listar os aliases em um keystore:
 
-´´´
+```
 $ keytool -list -keystore <keystore name>
-´´´
+```
 
 Para obter as informações de um alias específico:
 
-´´´
+```
 $ keytool -list -v -keystore <keystore name> -alias <alias name>
-´´´
+```
 
 ## Algumas Dicas
 

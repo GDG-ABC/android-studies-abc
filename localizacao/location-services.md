@@ -33,16 +33,16 @@
 * Obtendo a última localização conhecida:
   * Configurar as permissões no Manifesto para acesso a localização de acordo com a necessidade: 
 
-´´´xml
+```xml
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> 
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-´´´
+```
 	
   * Conectar ao Google Play Services:
     * Criar uma instancia do GoogleApiClient no onCreate de sua Activity e utilizar o builder para adicionar o LocationServices.
     * É possível definir um método para criação e chamá-lo no onCreate como abaixo.
 
-´´´java
+```java
 protected synchronized void buildGoogleApiClient() {
     mGoogleApiClient = new GoogleApiClient.Builder(this)
             .addConnectionCallbacks(this)
@@ -50,12 +50,12 @@ protected synchronized void buildGoogleApiClient() {
             .addApi(LocationServices.API)
             .build();
 }
-´´´
+```
 	
     * Implementar as interfaces de callback ConnectionCallbacks e OnConnectionFailedListener (no caso pode ser sua própria Activity)
     * Uma vez que a app estiver conectada ao google play services será chamado o método: onConnected(Bundle connectionHint) onde é possível utilizar a Fused Locatio Api para obter a localização do usuário como no método abaixo.
 
-´´´java
+```java
 @Override
 public void onConnected(Bundle connectionHint) {
     mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
@@ -65,4 +65,4 @@ public void onConnected(Bundle connectionHint) {
         mLastLocation .getLongitude();
     }
 }
-´´´
+```

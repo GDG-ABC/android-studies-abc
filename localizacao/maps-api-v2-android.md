@@ -17,11 +17,11 @@
 * Configure o Proguard conforme indicações da documentação: https://developer.android.com/google/play-services/setup.html 
 * Adicionar a versão do Google Play Services ao Manifest.
 
-´´´xml
+```xml
 <meta-data
     android:name="com.google.android.gms.version"
     android:value="@integer/google_play_services_version" />
-´´´
+```
 
 * Crie o certificado digital que irá assinar sua aplicação
   * https://developer.android.com/tools/publishing/app-signing.html 
@@ -40,23 +40,23 @@
   * Para facilitar crie um string resource para armazenar a chave.
   * Adicione-a como meta data no Manifest.
 
-´´´xml
+```xml
 <resources>
     <string name= "google_maps_key" translatable="false" templateMergeStrategy= "preserve">
         AIzaSyDiDkIv_iFEdKv_KT8-hYprHuEObTxO5WM
     </string>
 </resources>
-´´´
+```
 
-´´´xml
+```xml
 <meta-data
     android:name= "com.google.android.maps.v2.API_KEY"
     android:value= "@string/google_maps_key" />
-´´´
+```
 
 * Configurar as permissões necessárias.
 
-´´´xml
+```xml
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -67,50 +67,50 @@ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
 -->
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-´´´
+```
 	
 * Especificar a versão do OpenGL a ser utilizada.
 
-´´´xml
+```xml
 <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
-´´´
+```
 	
 * A forma mais simples de adicionar um mapa é incluir um MapFragment ou SupportMapFragment no layout.
 
-´´´xml
+```xml
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools= "http://schemas.android.com/tools" android:layout_width= "match_parent"
     android:layout_height= "match_parent" android:id="@+id/map" tools:context=".MapsActivity"
     android:name= "com.google.android.gms.maps.SupportMapFragment" />
-´´´
+```
 
 * E carregar o layout no onCreate da Activity como de costume.
 
-´´´java
+```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super .onCreate(savedInstanceState);
     setContentView(R.layout. activity_maps);
     setUpMapIfNeeded() ;
 }
-´´´
+```
 
 * Para manipular o mapa (adicionar marcadores, janelas, mudar o tipo de mapa, posição da camera etc) é necessário obter uma instancia de GoogleMap. É possível fazer isso de duas formas:
   * Sincronamente: 
     * Lembrando que ao utilizar a chamada sincrona é necessário verificar se a instância de GoogleMap retornada é nula ou não antes de utilizá-la.
     * Essa forma não é muito segura, pois não se tem certeza de quando a instâcia de GoogleMap estará disponível.
 
-´´´java  
+```java  
     mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-´´´	
+```	
 
   * Assincronamente:
     * O this refere-se a uma classe que que implemente a interface OnMapReadyCallback (no caso a própria Activity).
     * Deve-se então implementar o método onMapReady(GoogleMap map) para manipular o mapa. Como no exemplo abaixo (retirado da documentação):
 
-´´´java    
+```java    
 ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
 
 @Override
@@ -125,23 +125,23 @@ public void onMapReady(GoogleMap map) {
             .snippet("The most populous city in Australia.")
             .position(sydney));
 }
-´´´
+```
 
 * Utilizando a classe GoogleMap é possível brincar com o mapa livremente:
   * Mudar o tipo de mapa: map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
   * Utilizar Indoors Maps: map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-33.86997, 151.2089), 18));
   * Adicionar marcadores e janelas de informação:  
   
-´´´java
+```java
 map.addMarker(new MarkerOptions()
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.house_flag))
             .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
             .position(new LatLng(41.889, -87.622)));
-´´´
+```
 
   * Utilizar FlatMarkers:  
 
-´´´java
+```java
 // Flat markers will rotate when the map is rotated,
 // and change perspective when the map is tilted.
 map.addMarker(new MarkerOptions()
@@ -159,11 +159,11 @@ CameraPosition cameraPosition = CameraPosition.builder()
 // Animate the change in camera view over 2 seconds
 map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition),
         2000, null);
-´´´
+```
     
   * Desenhar PolyLines:  
 
-´´´java
+```java
 // Polylines are useful for marking paths and routes on the map.        
 map.addPolyline(new PolylineOptions().geodesic(true)
             .add(new LatLng(-33.866, 151.195))  // Sydney
@@ -171,4 +171,4 @@ map.addPolyline(new PolylineOptions().geodesic(true)
             .add(new LatLng(21.291, -157.821))  // Hawaii
             .add(new LatLng(37.423, -122.091))  // Mountain View
     );
-´´´
+```

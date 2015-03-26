@@ -77,7 +77,7 @@
   * Registrar o ContentProvider no Manifest: <provider android:authority="" android:name=""></provider>
   * Implementar os métodos do ContentProvider que efetivamente manipulam os dados:
   
-´´´java  
+```java  
 ...
 
 public boolean onCreate() {...}
@@ -93,7 +93,7 @@ public int delete(Uri, String, String[]) {...}
 public String getType(Uri) {...}
 
 ...
-´´´
+```
 
   * ContentProvider Types  
     * Dir: um conjunto de registros

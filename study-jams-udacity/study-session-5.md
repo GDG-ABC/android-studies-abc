@@ -133,13 +133,13 @@
 * ArgumentsBundle e o SavedInstanceStateBundle
 * getParentActivityIntent utilizado para tratar a restauração da Activity pai.
 
-´´´java
+```java
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 @Override
 public Intent getParentActivityIntent() {
      return super.getParentActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 }
-´´´
+```
 
 ## List View, Themes and Styles
 
