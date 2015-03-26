@@ -8,5 +8,6 @@ Por favor sinta-se a vontade para incluir, corrigir ou atualizar informações!
 ## Conteúdos
 * localizacao: como utilizar o Google Maps API v2 e o Location Services da Google Play Services.
 * study-jams-udacity: anotações geradas durante as sessões de estudo do GDG Android Fundamentals Study Jam.
-
+* gerais: dicas gerais sobre desenvolvimento android;
+  * dicas para manipulação de Keystore
 
